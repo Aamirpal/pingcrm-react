@@ -18,8 +18,7 @@ const { hmrOptions, devServer } = require('./webpack.fix');
 mix.extract();
 
 mix
-  .js('resources/js/app.js', 'public/js')
-  .react()
+  .react('resources/assets/js/app.js', 'public/js')
   .postCss('resources/css/app.css', 'public/css/app.css', [
     require('postcss-import'),
     require('tailwindcss'),
