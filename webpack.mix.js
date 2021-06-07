@@ -18,9 +18,24 @@ const { hmrOptions, devServer } = require('./webpack.fix');
 mix.extract();
 
 mix
-  .react('resources/js/app.js', 'public/js')
-  .babel('public/js/app.js', 'public/js/app-compiled.js')
+  .js('resources/js/app.js', 'public/js')
+  .react()
+  .postCss('resources/css/app.css', 'public/css/app.css', [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer')
+  ])
   .options({
-    compact: false,
+    hmrOptions: hmrOptions
   })
-  .sourceMaps(true, 'source-map');
+  .webpackConfig({
+    output: { chunkFilename: 'js/[name].js?id=[chunkhash]' },
+    resolve: {
+      alias: {
+        '@': path.resolve('resources/js')
+      }
+    },
+    devServer: devServer
+  })
+  .version()
+  .sourceMaps();
