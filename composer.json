@@ -25,7 +25,6 @@
         "nunomaduro/collision": "^5.0",
         "phpunit/phpunit": "^9.0",
         "reinink/remember-query-strings": "^0.1.0",
-        "rollbar/rollbar-laravel": "^7.0",
         "sentry/sentry-laravel": "^1.5",
         "tightenco/ziggy": "^0.8.0"
     },
@@ -52,6 +51,7 @@
     },
     "scripts": {
         "compile": [
+            "npm run prod",
             "@php artisan migrate:fresh --force",
             "@php artisan db:seed --force"
         ],
